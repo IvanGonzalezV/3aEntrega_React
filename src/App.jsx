@@ -4,6 +4,7 @@ import "./components/UserCard/UserCard.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios"; // Axios se utiliza para hacer solicitudes HTTP
 
+// COMPONENTS
 import Header from "./components/Header/Header";
 import UserCard from "./components/UserCard/UserCard";
 import NavBar from "./components/NavBar/NavBar";
@@ -12,6 +13,10 @@ import HomePage from "./Pages/HomePage/Home";
 import CategoriesPage from "./Pages/CategoriesPage/Categories";
 import ContactPage from "./Pages/ContactPage/Contact";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+
+// MUI
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 class App extends React.Component {
   constructor(props) {
