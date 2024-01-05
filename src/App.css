@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Fijo arriba */
+.Header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Fija a NavBar abajo de Header */
+.NavBar {
+  position: fixed;
+  top: 143px;
+  width: 100%;
+  height: 32px;
+  background-color: #555;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  z-index: 999;
+}
+
+.UserSectionA {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 280px;
+  gap: 35px;
+}
+
+.UserSection {
+  display: flex;
+  justify-content: space-evenly;
+  /* margin-top: 100px; */
+  margin-bottom: 100px;
+  gap: 35px;
+}
+
+.UserCard {
+  position: relative;
+}
+
+.UserCard img {
+  width: 100px;
+  height: 60px;
+  object-fit: fill;
+}
