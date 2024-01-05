@@ -1,12 +1,18 @@
 import React from 'react';
-import TextField from '@mui/material/TextField';
+import { TextField, Button } from '@mui/material';
 
 const Categories = () => {
   return (
     <div>
       <div></div>
       <form>
-        <TextField placeholder="Buscar Categoria" variant="outlined" />
+        <TextField
+          placeholder="Find Category"
+          variant="outlined"
+        />
+        <button>
+          <Button variant="contained">Search</Button>
+        </button>
       </form>
     </div>
   );
