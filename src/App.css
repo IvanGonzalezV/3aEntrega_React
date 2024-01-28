@@ -59,3 +59,13 @@
   height: 60px;
   object-fit: fill;
 }
+
+.App.dark-mode {
+  background-color: #333;
+  color: #fff;
+}
+
+body.dark-mode {
+  background-color: #333;
+  color: #fff;
+}

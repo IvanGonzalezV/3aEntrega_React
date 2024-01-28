@@ -4,7 +4,7 @@ import "./components/UserCard/UserCard.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios"; // Axios se utiliza para hacer solicitudes HTTP
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Switch from "@mui/material/Switch";  
+import Switch from "@mui/material/Switch";
 import styled from "@emotion/styled";
 
 // COMPONENTS
@@ -19,7 +19,7 @@ import ContactPage from "./Pages/ContactPage/Contact";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 
-const theme = createTheme();  
+const theme = createTheme();
 
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -73,8 +73,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [], // Este es el que inicializara el estado con un array vacío
+      products: [], // inicializara el estado con un array vacío
+      darkMode: false,
     };
+  }
+
+  toggleDarkMode = () => {
+    this.setState((prevState) => ({ darkMode: !prevState.darkMode }));
   }
 
   componentDidMount() {
@@ -86,44 +91,51 @@ class App extends React.Component {
   }
 
   render() {
-    // Este lo ues para dividir el array de productos en subconjuntos de 4 elementos
+    // divide el array de productos en subconjuntos de 4 elementos
+    const { darkMode } = this.state;
+    const theme = createTheme({
+      palette: {
+        mode: darkMode ? 'dark' : 'light',
+      },
+    });
+
     const rows = this.state.products.reduce((rows, product, index) => {
       return (index % 4 === 0 ? rows.push([product]) : rows[rows.length - 1].push(product)) && rows;
     }, []);
 
     return (
       <ThemeProvider theme={theme}>
-      <Router>
-        <div className="App">
-          <Header title="" subtitle="" />
-          <NavBar />
+        <Router>
+          <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
+            <Header title="" subtitle="" />
+            <NavBar onToggleDarkMode={this.toggleDarkMode} darkMode={darkMode} />
 
-          {/* con este mapeo cada fila de productos */}
-          {rows.map((row, rowIndex) => (
-            <div key={rowIndex} className={rowIndex === 0 ? "UserSectionA" : "UserSection"}>
-              {/* con este mapea cada producto en la fila */}
-              {row.map((product) => (
-                <UserCard
-                  key={product.id}
-                  img={product.image}
-                  name={product.title}
-                  offer={`$${product.price}`}
-                  date={product.category}
-                />
-              ))}
-            </div>
-          ))}
+            {/* con este mapeo cada fila de productos */}
+            {rows.map((row, rowIndex) => (
+              <div key={rowIndex} className={rowIndex === 0 ? "UserSectionA" : "UserSection"}>
+                {/* con este mapea cada producto en la fila */}
+                {row.map((product) => (
+                  <UserCard
+                    key={product.id}
+                    img={product.image}
+                    name={product.title}
+                    offer={`$${product.price}`}
+                    date={product.category}
+                  />
+                ))}
+              </div>
+            ))}
 
-          <Routes className="App">
-            <Route path="/" element={<HomePage />} />
-            <Route path="/Categories" element={<CategoriesPage />} />
-            <Route path="/Contact" element={<ContactPage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
+            <Routes className="App">
+              <Route path="/" element={<HomePage />} />
+              <Route path="/Categories" element={<CategoriesPage />} />
+              <Route path="/Contact" element={<ContactPage />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
 
-          <Footer />
-        </div>
-      </Router>
+            <Footer />
+          </div>
+        </Router>
       </ThemeProvider>
     );
   }

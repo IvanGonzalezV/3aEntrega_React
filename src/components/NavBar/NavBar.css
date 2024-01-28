@@ -49,3 +49,11 @@ ul li {
 ul li:hover {
     animation: pop 0.7s ease;
 }
+
+
+.App.dark-mode {
+    background-color: #333;
+    /* Cambia el color de fondo en modo oscuro según tus preferencias */
+    color: #fff;
+    /* Cambia el color del texto en modo oscuro según tus preferencias */
+}
