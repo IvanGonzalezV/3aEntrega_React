@@ -3,16 +3,26 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-const UserCard = (props) => {
+const UserCardComponent = (props) => {
+    const handleAddToCartClick = () => {
+        // Manejar la acción de agregar al carrito aquí
+        console.log('Agregado al carrito');
+    };
+
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
+        <Card sx={{ maxWidth: 345, position: 'relative' }}>
+            <CardActionArea onClick={handleAddToCartClick}>
                 <CardMedia
                     component="img"
                     image={props.img}
                     alt={props.name}
                 />
+                {/* Agrega el icono de carrito de compras aquí */}
+                <div style={{ position: 'absolute', bottom: 5, right: 5 }}>
+                    <AddShoppingCartIcon sx={{ color: 'primary.main' }} />
+                </div>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {props.name}
@@ -34,4 +44,4 @@ const UserCard = (props) => {
     );
 }
 
-export default UserCard;
+export default UserCardComponent;
