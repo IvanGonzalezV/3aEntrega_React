@@ -1,7 +1,8 @@
+import React from "react";
 import "./NavBar.css";
 import CartWidget from "../CartWidget/CartWidget";
-
 import { Link } from "react-router-dom"
+import { MaterialUISwitch } from "../../App";
 
 const NavBar = () => {
     return (
@@ -11,6 +12,7 @@ const NavBar = () => {
                 <li className="li"><Link to="/Categories">Categories</Link></li>
                 <li className="li"><Link to="/Contact">Contact</Link></li>
                 <li className="Nav"><CartWidget /></li>
+                <li className="Switch" style={{ marginTop: '-10px' }}><MaterialUISwitch /></li>
             </ul>
         </nav>
     )
