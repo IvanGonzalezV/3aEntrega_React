@@ -6,6 +6,8 @@ import axios from "axios"; // Axios se utiliza para hacer solicitudes HTTP
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import styled from "@emotion/styled";
+import { db } from "./firebase/firebaseConfig";
+import { collection, query, getDocs } from "firebase/firestore";
 
 // COMPONENTS
 import Header from "./components/Header/Header";
