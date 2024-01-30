@@ -2,6 +2,10 @@ import React from 'react';
 import { TextField, Button } from '@mui/material';
 
 const Categories = () => {
+  const handleSearch = () => {
+    // Lógica de búsqueda
+  };
+
   return (
     <div>
       <div></div>
@@ -10,9 +14,9 @@ const Categories = () => {
           placeholder="Find Category"
           variant="outlined"
         />
-        <button>
-          <Button variant="contained">Search</Button>
-        </button>
+        <Button variant="contained" onClick={handleSearch}>
+          Search
+        </Button>
       </form>
     </div>
   );
