@@ -1,12 +1,13 @@
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import React from "react";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-const CartWidget = () => {
+const CartWidget = ({ itemCount }) => {
     return (
-        <div style={{display: "flex"}}>
-            <ShoppingCartIcon />
-            <span>7</span>
+        <div>
+            <ShoppingCartIcon fontSize="large" />
+            {itemCount > 0 && <span>{itemCount}</span>}
         </div>
-    )
-}
+    );
+};
 
-export default CartWidget
+export default CartWidget;

@@ -6,8 +6,9 @@ import axios from "axios"; // Axios se utiliza para hacer solicitudes HTTP
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import styled from "@emotion/styled";
-import { db } from "./firebase/firebaseConfig";
-import { collection, query, getDocs } from "firebase/firestore";
+import Badge from "@mui/material/Badge";
+// import { db } from "./firebase/firebaseConfig";
+// import { collection, query, getDocs } from "firebase/firestore";
 
 // COMPONENTS
 import Header from "./components/Header/Header";
@@ -20,6 +21,7 @@ import CategoriesPage from "./components/CategoriesPage/CategoriesPage"
 // import CategoriesPage from "./Pages/CategoriesPage/Categories";
 import ContactPage from "./Pages/ContactPage/Contact";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import CartWidget from "./components/CartWidget/CartWidget";
 
 
 const theme = createTheme();
@@ -78,12 +80,21 @@ class App extends React.Component {
     this.state = {
       products: [], // inicializara el estado con un array vacío
       darkMode: false,
+      cartItems: [],
+      cartItemsCount: 0,
     };
   }
 
   toggleDarkMode = () => {
     this.setState((prevState) => ({ darkMode: !prevState.darkMode }));
   }
+
+  addToCart = (product) => {
+    this.setState((prevState) => ({
+      cartItems: [...prevState.cartItems, product],
+      cartItemCount: prevState.cartItemCount + 1,
+    }));
+  };
 
   componentDidMount() {
     // Este va a obtener datos de la API y ademas actualizara el estado
@@ -111,7 +122,8 @@ class App extends React.Component {
         <Router>
           <div className={`App ${darkMode ? 'dark-mode' : ''}`}>
             <Header title="" subtitle="" />
-            <NavBar onToggleDarkMode={this.toggleDarkMode} darkMode={darkMode} />
+            <NavBar onToggleDarkMode={this.toggleDarkMode} darkMode={darkMode} cartItemCount={this.state.cartItemCount} />
+
 
             {/* con este mapeo cada fila de productos */}
             {rows.map((row, rowIndex) => (
@@ -124,6 +136,7 @@ class App extends React.Component {
                     name={product.title}
                     offer={`$${product.price}`}
                     date={product.category}
+                    addToCart={() => this.addToCart(product)}
                   />
                 ))}
               </div>
@@ -136,7 +149,14 @@ class App extends React.Component {
               <Route path="*" element={<ErrorPage />} />
             </Routes>
 
-            <Footer />
+            <div className="footer-container">
+              <Badge badgeContent={this.state.cartItemCount} color="secondary" overlap="circular">
+                <CartWidget itemCount={this.state.cartItemCount} />
+              </Badge>
+              <MaterialUISwitch />
+              <Footer />
+
+            </div>
           </div>
         </Router>
       </ThemeProvider>
