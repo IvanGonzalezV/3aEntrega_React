@@ -9,8 +9,10 @@ const CategoriesPage = () => {
         const getProducts = async () => {
             const q = query(collection(db, "Products"));
             const querySnapshot = await getDocs(q);
-            console.log(querySnapshot)
-        }
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, " => ", doc.data());
+            })
+        };
 
         getProducts();
     }, []);

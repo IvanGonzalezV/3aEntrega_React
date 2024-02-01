@@ -15,8 +15,9 @@ import UserCard from "./components/UserCard/UserCard";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./Pages/HomePage/Home";
+import CategoriesPage from "./components/CategoriesPage/CategoriesPage"
 
-import CategoriesPage from "./Pages/CategoriesPage/Categories";
+// import CategoriesPage from "./Pages/CategoriesPage/Categories";
 import ContactPage from "./Pages/ContactPage/Contact";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
