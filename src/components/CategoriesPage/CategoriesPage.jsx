@@ -7,13 +7,20 @@ const CategoriesPage = () => {
 
     useEffect(() => {
         const getProducts = async () => {
+            try {
             const q = query(collection(db, "Products"));
             const querySnapshot = await getDocs(q);
+            const docs = [];
             querySnapshot.forEach((doc) => {
-                console.log(doc.id, " => ", doc.data());
-            })
-        };
-
+                // console.log(doc.id, " => ", doc.data());
+                docs.push({ ...doc.data(), id: doc.id });
+            });
+            console.log(docs);
+            setProductsData(docs);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
         getProducts();
     }, []);
 
